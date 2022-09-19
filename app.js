@@ -30,10 +30,15 @@ app.get("/api/users/:id", userHandlers.getUserById);
 app.put("/api/users/:id", userHandlers.updateUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
 
+//EXPRESS 08
+const { hashPassword, verifyPassword } = require("./auth");
 
+app.post(
+  "/api/login",
+  userHandlers.getUserByEmailWithPasswordAndPassToNext,
+  verifyPassword
+);
 //EXPRESS 07
-
-const { hashPassword } = require("./auth.js");
 app.post("/api/users", hashPassword, userHandlers.postUser);
 
 

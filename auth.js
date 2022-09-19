@@ -1,5 +1,9 @@
 const argon2 = require("argon2");
 
+const verifyPassword = (req, res) => {
+  res.send(req.user);
+}
+
 const hashingOptions = {
   type: argon2.argon2id,
   memoryCost: 2 ** 16,
@@ -23,5 +27,6 @@ const hashPassword = (req, res, next) => {
 };
 
 module.exports = {
-  hashPassword,
+  verifyPassword,
+  hashPassword
 };
